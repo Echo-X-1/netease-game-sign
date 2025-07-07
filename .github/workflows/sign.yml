@@ -1,0 +1,26 @@
+name: NetEase Game Auto Sign
+
+on:
+  schedule:
+    - cron: '0 17 * * *'  # 每天UTC时间17点运行(北京时间次日1点)
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  signin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # 检出代码
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: pip install requests
+      
+      - name: Run sign in script
+        env:
+          WYY_USERNAME: ${{ secrets.WYY_USERNAME }}
+          WYY_PASSWORD: ${{ secrets.WYY_PASSWORD }}
+        run: python sign.py
