@@ -1,4 +1,4 @@
-import requests
+   import requests
 import os
 from datetime import datetime
 
@@ -8,7 +8,7 @@ password = os.getenv('WYY_PASSWORD')
 
 def login():
     """模拟登录网易云游戏平台"""
-    login_url = 'https://game.163.com/login'
+    login_url = 'https://cg.163.com/login'
     session = requests.Session()
     
     login_data = {
